@@ -14,5 +14,9 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --force-
 ## JAVA_HOME
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 
+# Add a few useful utils
+# net-tools contains ifconfig
+RUN apt-get install -y curl net-tools iputils-ping
+
 COPY docker-tryout-0.0.1-SNAPSHOT.jar app.jar
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","app.jar"]
