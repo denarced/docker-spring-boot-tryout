@@ -13,5 +13,5 @@ echo "Starting the container with port $1 exposed on host"
 echo "URL http://localhost:$1"
 # hostPort:containerPort
 portdef="$1:8080"
-docker run -p $portdef -t docker-ubuntu-java8-test
+docker run -d -p $portdef -t docker-ubuntu-java8-test
 
