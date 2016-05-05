@@ -9,4 +9,4 @@ then
 fi
 
 echo "Starting the container with net-alias $1"
-docker run -d --net=prinet --net-alias=$1 -t docker-ubuntu-java8-test
+docker run -e "nodeid=$1" -d --net=prinet --net-alias=$1 -t docker-ubuntu-java8-test

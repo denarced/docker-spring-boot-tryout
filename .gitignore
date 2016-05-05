@@ -1,2 +1,6 @@
 *.jar
+# IntelliJ Idea project files
+*.iml
+
 webapp-docker-image/docker-tryout/target/
+webapp-docker-image/docker-tryout/.idea/
