@@ -4,4 +4,4 @@
 # script should only be executed once unless Dockerfile or docker-tryout
 # project has changed.
 
-docker build -t docker-ubuntu-java8-test .
+docker build -t docker-ubuntu-java8-test webapp-docker-image

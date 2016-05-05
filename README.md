@@ -1,5 +1,13 @@
 # docker-spring-boot-tryout
-Just trying out Docker and Spring Boot in a very simple setup. Something to get started with. The Docker image is based on Ubuntu 16.04.
+Just trying out Docker, Spring Boot, and haproxy in a very simple setup. Something to get started with. The goal is to have
+
+- a single new Docker network to be used by the launched containers with only
+  one container exposed to the host
+- one container running haproxy and exposed to the host on port 80. It'll pass
+  all traffic to the two webapps that are not directly exposed to the host at
+  all.
+- two containers running two webapps
+- two images: one for haproxy and another for webapp
 
 # Dependencies
 
@@ -14,18 +22,15 @@ It'll probably work with any Maven 3.x version, any Java 8 version, and on vario
 
 # Quick Start
 
-Execute the following:
+Execute `setup.bash`. It'll
 
-```
-  build_docker-tryout.bash && \
-  build_docker_image.bash && \
-  start_container.bash 15001
-```
+1. build the webapp
+2. built the images. One for haproxy and another for the webapp built in
+   previous step.
 
-This'll:
-
-1. Build the Spring Boot project to be included into the Docker image
-2. Build the Docker image
-3. Run the Docker in a container and expose the Spring Boot webapp on host port 15001
-
-Naturally port 15001 has to be available for this to work. After the first container has been launched it can be seen by running `docker ps`. And the built Docker image can be seen by running `docker images`.
+After setting things up, `start_containers.bash` can be used to start the
+containers. One for haproxy and two for webapps. Port 80 has to be available on
+host for this to work. After the containers have been launched they can be seen
+by running `docker ps`. And the built Docker images can be seen by running
+`docker images`. Finally the webapps can be accessed through haproxy on
+http://localhost.

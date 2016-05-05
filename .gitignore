@@ -1,2 +1,2 @@
 *.jar
-docker-tryout/target/
+webapp-docker-image/docker-tryout/target/
