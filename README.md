@@ -46,4 +46,51 @@ The created PostgreSQL database contains one table that only contains
 - POST   /message/{id} edits an existing message
 - DELETE /message/{id} deletes an existing message
 
-JSON is used throughout. For creating, reading, and updating the messages.
+JSON is used throughout. For creating, reading, and updating the messages. Upon creating and editing, the message in question is returned.
+
+# Webapp Examples
+
+Calling GET /messages results in the following, pretty printed here:
+```
+[
+    {
+        "id": 1,
+        "message": "henna"
+    },
+    {
+        "id": 2,
+        "message": "henna"
+    },
+    {
+        "id": 3,
+        "message": "kaija"
+    }
+]
+```
+
+To create a message with curl, the id attribute can be left out of the JSON:
+```
+curl -X POST -d '{"message": "a value"}' -H 'Content-Type: application/json' http://localhost/message
+```
+If this is the first message in the database, the returned JSON would be:
+```
+{
+  "id": 1,
+  "message": "a value"
+}
+```
+The same holds true for editing a message because the ID of the message is in the URL:
+```
+curl -X POST -d '{"message": "other value"}' -H 'Content-Type: application/json' http://localhost/message/1
+```
+And the returned JSON would be:
+```
+{
+  "id": 1,
+  "message": "other value"
+}
+```
+Deleting a message with it's ID:
+```
+curl -X DELETE http://localhost/message/1
+```
