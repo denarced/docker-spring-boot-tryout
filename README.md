@@ -26,7 +26,7 @@ It'll probably work with any Maven 3.x version, any Java 8 version, and on vario
 Execute `setup.bash`. It'll
 
 1. build the webapp
-2. built the images. One for haproxy, one for PostgreSQL, and another for the
+2. build the images. One for haproxy, one for PostgreSQL, and one for the
    webapp built in previous step.
 
 After setting things up, `start_containers.bash` can be used to start all of the
@@ -38,7 +38,7 @@ can be accessed through haproxy on http://localhost.
 # Webapp HTTP Interfaces
 
 The created PostgreSQL database contains one table that only contains
-"messages": simple strings for which the webapps provide CRUD interfaces:
+"messages": simple strings for which the webapps provide RESTful CRUD interfaces:
 
 - POST   /message creates a new message
 - GET    /message/{id} reads a specific message. The one with {id} in URL.
