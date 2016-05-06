@@ -7,7 +7,8 @@ Just trying out Docker, Spring Boot, and haproxy in a very simple setup. Somethi
   all traffic to the two webapps that are not directly exposed to the host at
   all.
 - two containers running two webapps
-- two images: one for haproxy and another for webapp
+- one container running PostgreSQL database
+- three images: one for haproxy, one for webapp, and one for PostgreSQL
 
 # Dependencies
 
@@ -25,12 +26,24 @@ It'll probably work with any Maven 3.x version, any Java 8 version, and on vario
 Execute `setup.bash`. It'll
 
 1. build the webapp
-2. built the images. One for haproxy and another for the webapp built in
-   previous step.
+2. built the images. One for haproxy, one for PostgreSQL, and another for the
+   webapp built in previous step.
 
-After setting things up, `start_containers.bash` can be used to start the
-containers. One for haproxy and two for webapps. Port 80 has to be available on
-host for this to work. After the containers have been launched they can be seen
-by running `docker ps`. And the built Docker images can be seen by running
-`docker images`. Finally the webapps can be accessed through haproxy on
-http://localhost.
+After setting things up, `start_containers.bash` can be used to start all of the
+containers. Port 80 has to be available on host for this to work. After the
+containers have been launched they can be seen by running `docker ps`. And the
+built Docker images can be seen by running `docker images`. Finally the webapps
+can be accessed through haproxy on http://localhost.
+
+# Webapp HTTP Interfaces
+
+The created PostgreSQL database contains one table that only contains
+"messages": simple strings for which the webapps provide CRUD interfaces:
+
+- POST   /message creates a new message
+- GET    /message/{id} reads a specific message. The one with {id} in URL.
+- GET    /messages reads all messages
+- POST   /message/{id} edits an existing message
+- DELETE /message/{id} deletes an existing message
+
+JSON is used throughout. For creating, reading, and updating the messages.

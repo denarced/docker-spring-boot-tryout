@@ -1,5 +1,6 @@
 #!/bin/bash
 
+./start_postgres_container.bash
 for each in webapp{1..2}
 do
     ./start_webapp_container.bash $each

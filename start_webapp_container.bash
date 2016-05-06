@@ -9,4 +9,12 @@ then
 fi
 
 echo "Starting the container with net-alias $1"
-docker run -e "nodeid=$1" -d --net=prinet --net-alias=$1 -t docker-ubuntu-java8-test
+docker run \
+    -e "nodeid=$1" \
+    -e "spring.datasource.url=jdbc:postgresql://postgredb/dockertestdb" \
+    -e "spring.datasource.username=denarced" \
+    -e "spring.datasource.password=protekto" \
+    -d \
+    --net=prinet \
+    --net-alias=$1 \
+    -t docker-ubuntu-java8-test

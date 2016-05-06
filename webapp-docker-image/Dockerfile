@@ -16,7 +16,7 @@ ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 
 # Add a few useful utils
 # net-tools contains ifconfig
-RUN apt-get install -y curl net-tools iputils-ping
+RUN apt-get install -y curl net-tools iputils-ping vim
 
 COPY docker-tryout-0.0.1-SNAPSHOT.jar app.jar
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","app.jar"]
